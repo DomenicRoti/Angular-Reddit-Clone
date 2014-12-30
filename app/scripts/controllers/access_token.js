@@ -14,7 +14,10 @@ angular.module('redditCloneApp')
     if(authState != "" && authState == $cookies.authState){
       var accesstoken = $routeParams["id"].split('&')[0];
       $cookies.accesstoken = accesstoken;
-      $cookies.authorized = false;
+      $cookies.authorized = true;
+      var cookieExpiration = new Date();
+      cookieExpiration.setHours(cookieExpiration.getHours() + 1);
+      document.cookie = 'authorized=; expires=' + cookieExpiration;
     }
     $window.location = "/";
 
