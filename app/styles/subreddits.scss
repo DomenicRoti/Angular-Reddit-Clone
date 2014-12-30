@@ -1,0 +1,14 @@
+.subreddits{
+  ul {
+    padding: 10px;
+    height: 14px;
+    overflow: hidden;
+    box-sizing: content-box;
+    li{
+      display:inline;
+      &:after{
+        content: ' - ';
+      }
+    }
+  }
+}
