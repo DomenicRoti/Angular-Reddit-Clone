@@ -1,0 +1,18 @@
+<div class="userInfo" ng-show="authorized">
+  <h5>{{username}}</h5>
+  <dl>
+    <dt>Link Karma</dt>
+    <dd>{{linkKarma}}</dd>
+
+    <dt>Comment Karma</dt>
+    <dd>{{commentKarma}}</dd>
+
+    <dt>User Since</dt>
+    <dd>
+      {{userCreatedDate | date:'d MMMM yyyy' : 'UTC'}}
+
+    </dd>
+  </dl>
+</div>
+
+<a href="#" ng-hide="authorized" ng-click="requestAuth()">Login to Reddit</a>
