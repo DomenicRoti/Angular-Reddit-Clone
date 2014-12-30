@@ -39,7 +39,7 @@ angular.module('redditCloneApp')
         state: $filter('random')(10),
         redirect_uri: encodeURI(redirectURL),
         duration: 'temporary',
-        scope: 'identity'
+        scope: 'identity,mysubreddits'
       };
       $cookies.authState = authData.state;
       var authUrl = 'https://www.reddit.com/api/v1/authorize?' + $filter('queryString')(authData);
