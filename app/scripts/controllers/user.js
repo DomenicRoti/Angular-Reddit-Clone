@@ -9,26 +9,24 @@
  */
 angular.module('redditCloneApp')
   .controller('UserCtrl', function ($scope, $http, $window, $filter, $cookies) {
-    var redirectURL = "http://domenicroti.com/";
+    var redirectURL = 'http://domenicroti.com/';
     $scope.authorized = $cookies.authorized;
 
     if($scope.authorized){
-      var authHeaderString = "bearer " + $cookies.accesstoken;
+      var authHeaderString = 'bearer ' + $cookies.accesstoken;
       var req = {
         method: 'GET',
         url: 'https://oauth.reddit.com/api/v1/me',
         headers: {
          'Authorization': authHeaderString
         }
-      }
+      };
 
       $http(req).success(function(data){
-        console.log(data);
         $scope.username = data.name;
         $scope.linkKarma = data.link_karma;
         $scope.commentKarma = data.comment_karma;
-        $scope.userCreatedDate = new Date(1285345011 * 1000)
-      }).error(function(){
+        $scope.userCreatedDate = new Date(1285345011 * 1000);
       });
     }
 
@@ -39,7 +37,7 @@ angular.module('redditCloneApp')
         state: $filter('random')(10),
         redirect_uri: encodeURI(redirectURL),
         duration: 'temporary',
-        scope: 'identity,mysubreddits'
+        scope: 'identity,mysubreddits,read'
       };
       $cookies.authState = authData.state;
       var authUrl = 'https://www.reddit.com/api/v1/authorize?' + $filter('queryString')(authData);

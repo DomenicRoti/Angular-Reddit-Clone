@@ -14,8 +14,9 @@ angular.module('redditCloneApp')
     Subreddits.getSubreddits = function(callback){
 
       var postHeader;
+      var postUrl;
       if($cookies.authorized){
-        var postUrl = 'https://oauth.reddit.com/subreddits/mine/?limit=100';
+        postUrl = 'https://oauth.reddit.com/subreddits/mine/?limit=100';
         postHeader = {'Authorization': 'bearer ' + $cookies.accesstoken};
       } else {
         postUrl = 'http://www.reddit.com/reddits.json';

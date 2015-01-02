@@ -15,7 +15,7 @@ angular.module('redditCloneApp')
       var postUrl = 'http://www.reddit.com/';
       var postHeader;
       var queryString = {};
-      if(after != ""){
+      if(after !== ''){
         queryString.after = after;
       }
       if($cookies.authorized && localStorage.getItem('subreddits')){
