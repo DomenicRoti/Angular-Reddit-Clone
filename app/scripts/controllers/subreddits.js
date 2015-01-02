@@ -8,32 +8,13 @@
  * Controller of the redditCloneApp
  */
 angular.module('redditCloneApp')
-  .controller('SubredditsCtrl', function ($scope, $cookies, $http) {
-    if($cookies.authorized){
-      var authHeaderString = "bearer " + $cookies.accesstoken;
-      var req = {
-        method: 'GET',
-        url: 'https://oauth.reddit.com/subreddits/mine/?limit=100',
-        headers: {
-         'Authorization': authHeaderString
-        }
-      }
-
-      $http(req).success(function(data){
-        parseSubreddits(data);
-      }).error(function(){
-      });
+  .controller('SubredditsCtrl', function ($scope, $cookies, $http, Subreddits) {
+    if(localStorage.getItem('subreddits')){
+      $scope.subreddits = JSON.parse(localStorage.getItem('subreddits'));
     } else {
-      $http.get('http://www.reddit.com/reddits.json').
-        success(function(data, status, headers, config) {
-          parseSubreddits(data);
-        });
+      Subreddits.getSubreddits(function(subreddits){
+        $scope.subreddits = subreddits;
+      });
     }
 
-    var parseSubreddits = function(subredditData){
-      $scope.subreddits = [];
-      for (var i = 0; i < subredditData.data.children.length; i++) {
-          $scope.subreddits.push(subredditData.data.children[i].data);
-      }
-    };
   });
