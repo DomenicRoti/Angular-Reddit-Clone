@@ -8,11 +8,15 @@
  * Controller of the redditCloneApp
  */
 angular.module('redditCloneApp')
-  .controller('MainCtrl', function ($scope, Posts, $cookies, $http) {
+  .controller('MainCtrl', function ($scope, Posts, $cookies, $http, $routeParams) {
+    var after = $routeParams["after"];
+    var before = $routeParams["before"];
+    $scope.before = after;
 
-    Posts.getPosts(function(results){
-      console.log(results.children);
+    Posts.getPosts(after, before, function(results){
+      console.log(results);
       $scope.posts = results.children;
+      $scope.after = results.after;
     });
 
     $scope.getPostLink = function(postData){
@@ -22,20 +26,4 @@ angular.module('redditCloneApp')
         return postData.url;
       }
     };
-
-    //
-    // var authHeaderString = "bearer " + $cookies.accesstoken;
-    //   var req = {
-    //     method: 'GET',
-    //     url: 'https://oauth.reddit.com/api/multi/mine',
-    //     headers: {
-    //      'Authorization': authHeaderString
-    //     }
-    //   }
-
-    //   $http(req).success(function(data){
-    //     console.log(data);
-    //   }).error(function(){
-    //   });
-
   });
