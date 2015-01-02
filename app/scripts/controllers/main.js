@@ -25,4 +25,21 @@ angular.module('redditCloneApp')
         return postData.url;
       }
     };
+    $scope.getColumnSize = function(postData){
+      if(postData.thumbnail !== ''){
+        return 'col-xs-9';
+      } else {
+        return 'col-xs-11';
+      }
+    };
+
+    $scope.vote = function (e, direction, id){
+      e.preventDefault();
+      if($cookies.authorized){
+
+      } else {
+        alert("you must be logged in to vote");
+      }
+      console.log('vote!');
+    };
   });

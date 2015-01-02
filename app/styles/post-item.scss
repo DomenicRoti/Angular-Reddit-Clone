@@ -1,0 +1,33 @@
+@import "compass";
+@import "mixins.scss";
+
+.post-item{
+  img{
+    max-width: 100%;
+  }
+  .score{
+    a{
+      position: relative;
+      text-indent: -1000px;
+      display: block;
+    }
+    .up{
+      &:before{
+          @include triangle(
+          $direction : top,
+          $position  : top 0 left 0,
+          $color     : #3498db
+        );
+      }
+    }
+    .down{
+      &:before{
+          @include triangle(
+          $direction : bottom,
+          $position  : top 0 left 0,
+          $color     : #3498db
+        );
+      }
+    }
+  }
+}

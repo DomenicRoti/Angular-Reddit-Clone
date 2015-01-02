@@ -1,5 +1,18 @@
-<div class="panel" ng-repeat="post in posts">
-  <a ng-href="{{getPostLink(post.data)}}">{{post.data.title}}</a>
+<div class="panel post-item" ng-repeat="post in posts">
+  <div class="row">
+    <div class="col-xs-1 score">
+      <a ng-click="vote($event, 'up', post.data.id)" class="up">Upvote</a>
+      <span>{{post.data.score}}</span>
+      <a ng-click="vote($event, 'down', post.data.id)" class="down" href="#">Downvote</a>
+    </div>
+    <div ng-show="post.data.thumbnail" class="col-xs-3">
+      <img src="{{post.data.thumbnail}}" alt="Thumbnail Photo">
+    </div>
+    <div class="{{getColumnSize(post.data)}}">
+      <a ng-href="{{getPostLink(post.data)}}">{{post.data.title}}</a>
+      <!-- <pre>{{post.data | json}}</pre> -->
+    </div>
+  </div>
 </div>
 
 <a class="btn btn-default" ng-show="before" ng-href="/#/before/{{before}}">Previous</a>
