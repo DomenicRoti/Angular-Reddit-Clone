@@ -8,8 +8,7 @@
  * Controller of the redditCloneApp
  */
 angular.module('redditCloneApp')
-  .controller('UserCtrl', function ($scope, $http, $window, $filter, $cookies) {
-    var redirectURL = 'http://domenicroti.com/';
+  .controller('UserCtrl', function ($scope, $http, $window, $filter, $cookies, user) {
     $scope.authorized = $cookies.authorized;
 
     if($scope.authorized){
@@ -31,17 +30,7 @@ angular.module('redditCloneApp')
     }
 
     $scope.requestAuth = function(){
-      var authData = {
-        client_id: '-q3RCJtRUGzEkg',
-        response_type: 'token',
-        state: $filter('random')(10),
-        redirect_uri: encodeURI(redirectURL),
-        duration: 'temporary',
-        scope: 'identity,mysubreddits,read'
-      };
-      $cookies.authState = authData.state;
-      var authUrl = 'https://www.reddit.com/api/v1/authorize?' + $filter('queryString')(authData);
-      $window.location = authUrl;
+      user.login();
     };
 
   });
