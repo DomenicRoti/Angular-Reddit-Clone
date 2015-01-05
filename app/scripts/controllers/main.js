@@ -8,7 +8,7 @@
  * Controller of the redditCloneApp
  */
 angular.module('redditCloneApp')
-  .controller('MainCtrl', function ($scope, $modal, Posts, $cookies, $http, $routeParams) {
+  .controller('MainCtrl', function ($scope, $modal, Posts, $cookies, $http, $routeParams, user) {
     var after = $routeParams.after;
     var before = $routeParams.before;
     $scope.before = after;
@@ -28,7 +28,7 @@ angular.module('redditCloneApp')
     };
     $scope.getColumnSize = function(postData){
       if(postData.thumbnail !== ''){
-        return 'col-xs-9';
+        return 'col-xs-8';
       } else {
         return 'col-xs-11';
       }
@@ -37,18 +37,15 @@ angular.module('redditCloneApp')
     $scope.vote = function (e, direction, id){
       e.preventDefault();
       if($cookies.authorized){
-
+        user.vote(direction, id, function(data){
+          console.log(data);
+        });
       } else {
-        var modalInstance = $modal.open({
-        templateUrl: 'views/loginModal.html',
-        controller: 'LoginModalCtrl',
-        size: "",
-        resolve: {
-          // items: function () {
-          //   return $scope.items;
-          // }
-        }
-      });
+        $modal.open({
+          templateUrl: 'views/loginModal.html',
+          controller: 'LoginModalCtrl',
+          size: '',
+        });
       }
     };
 

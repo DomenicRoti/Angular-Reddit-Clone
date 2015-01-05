@@ -19,12 +19,11 @@ angular.module('redditCloneApp')
         queryString.after = after;
       }
       if($cookies.authorized && localStorage.getItem('subreddits')){
-        var subscribedReddits = JSON.parse(localStorage.getItem('subreddits'));
-        var subscribedRedditsDisplayNames = [];
-        for (var i = 0; i < subscribedReddits.length; i++) {
-          subscribedRedditsDisplayNames.push(subscribedReddits[i].display_name);
-        }
-        postUrl = 'http://www.reddit.com/r/' +subscribedRedditsDisplayNames.join('+');
+        postUrl = 'https://oauth.reddit.com/';
+        postHeader = {
+          'Authorization': 'bearer ' + $cookies.accesstoken,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        };
       }
 
       postUrl += '.json';
@@ -33,7 +32,7 @@ angular.module('redditCloneApp')
       }
 
 
-      console.log(postUrl);
+      // console.log(postUrl);
       var req = {
         method: 'GET',
         url: postUrl,

@@ -1,9 +1,9 @@
 <div class="panel post-item" ng-repeat="post in posts">
   <div class="row">
     <div class="col-xs-1 score">
-      <a ng-click="vote($event, 'up', post.data.id)" class="up">Upvote</a>
+      <a ng-click="vote($event, '1', post.data.id)" class="up" href="#">Upvote</a>
       <span>{{post.data.score}}</span>
-      <a ng-click="vote($event, 'down', post.data.id)" class="down" href="#">Downvote</a>
+      <a ng-click="vote($event, '-1', post.data.id)" class="down" href="#">Downvote</a>
     </div>
     <div ng-show="post.data.thumbnail" class="col-xs-3">
       <img src="{{post.data.thumbnail}}" alt="Thumbnail Photo">
