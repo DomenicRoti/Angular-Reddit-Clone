@@ -1,1 +1,10 @@
-{{currentSubreddit}}
+<!-- <pre>{{currentSubreddit | json}}</pre> -->
+<img src="{{currentSubreddit.header_img}}" alt="">
+<ul>
+  <li>{{currentSubreddit.title}}</li>
+  <li>Subscribers: {{currentSubreddit.accounts_active}}</li>
+  <li>Description: {{currentSubreddit.public_description}}</li>
+  <!-- <li>Sidebar: {{currentSubreddit.description_html}}</li> -->
+</ul>
+
+<div ng-bind-html="sidebar"></div>
