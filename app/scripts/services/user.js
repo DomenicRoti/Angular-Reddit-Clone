@@ -12,7 +12,7 @@ angular.module('redditCloneApp')
     var User = {};
 
     User.login = function(){
-      var redirectURL = 'http://domenicroti.com/';
+      var redirectURL = 'http://domenicroti.com/angular-reddit';
       var authData = {
         client_id: '-q3RCJtRUGzEkg',
         response_type: 'token',
@@ -36,10 +36,11 @@ angular.module('redditCloneApp')
         url: 'https://oauth.reddit.com/api/vote',
         headers: postHeader,
         data:{
-          dir: direction,
-          id: id
+          dir: parseInt(direction),
+          id: id,
         }
       };
+      console.log(req);
       return $http(req).success(function(data){
         callback(data);
       });

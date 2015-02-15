@@ -38,6 +38,14 @@ angular
         templateUrl: 'views/access_token.html',
         controller: 'AccessTokenCtrl'
       })
+      .when('/r/:subreddit', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/r/:subreddit/after/:after', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

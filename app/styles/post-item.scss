@@ -2,6 +2,7 @@
 @import "mixins.scss";
 
 .post-item{
+  padding-bottom:10px;
   img{
     max-width: 100%;
   }
@@ -29,5 +30,9 @@
         );
       }
     }
+  }
+  .subreddit{
+    display: block;
+    margin-top:5px;
   }
 }
