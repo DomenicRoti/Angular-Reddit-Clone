@@ -8,10 +8,11 @@
  * Controller of the redditCloneApp
  */
 angular.module('redditCloneApp')
-  .controller('MainCtrl', function ($scope, $modal, Posts, $cookies, $http, $routeParams, user) {
+  .controller('MainCtrl', function ($scope, $rootScope, $modal, Posts, $cookies, $http, $routeParams, user, subredditService) {
     var after = $routeParams.after;
     var before = $routeParams.before;
     var subreddit = (typeof $routeParams.subreddit === 'undefined') ? null : $routeParams.subreddit;
+    subredditService.setCurrentSubreddit(subreddit);
     $scope.subreddit = subreddit;
     $scope.before = after;
     $scope.alerts = [];
