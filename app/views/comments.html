@@ -1,23 +1,26 @@
-<div class="panel post-item" ng-repeat="post in posts">
+<div class="panel post-item">
   <div class="row">
     <div class="col-xs-1 score">
       <a ng-click="vote($event, '1', post.data.name)" class="up" href="#">Upvote</a>
       <span>{{post.data.score}}</span>
       <a ng-click="vote($event, '-1', post.data.name)" class="down" href="#">Downvote</a>
     </div>
-    <div ng-show="post.data.thumbnail" class="col-xs-3">
-      <img ng-src="{{getThumbnail(post.data.thumbnail)}}" alt="Thumbnail Photo">
-    </div>
-    <div class="{{getColumnSize(post.data)}}">
-      <a ng-href="{{getPostLink(post.data)}}">{{post.data.title}}</a>
-      <!-- <pre>{{post.data | json}}</pre> -->
-      <!-- Likes: {{post.data.likes}} -->
-      <a href="#/r/{{post.data.subreddit}}/comments/{{post.data.id}}" class="comments">{{post.data.num_comments}} Comments</a>
 
-      <a href="#/r/{{post.data.subreddit}}" class="subreddit">/r/{{post.data.subreddit}}</a>
+    <div ng-show="post.data.thumbnail" class="col-xs-3">
+      <img ng-src="{{post.data.thumbnail}}" alt="Thumbnail Photo">
+    </div>
+    <div ng-class="(post.data.thumbnail !== '') ? 'col-md-8' : 'col-md-11'">
+      <a ng-href="{{getPostLink(post.data)}}">{{post.data.title}}</a>
+
+      <span class="submitted">
+        submitted <span am-time-ago="post.data.created_utc * 1000"></span> by
+        <a href="#">{{post.data.author}}</a>
+      </span>
+      <a href="#/r/{{post.data.subreddit}}/comments/{{post.data.id}}" class="comments">{{post.data.num_comments}} Comments</a>
+    </div>
+
+    <div class="row" ng-repeat="comment in comments">
+      <pre>{{comment | json}}</pre>
     </div>
   </div>
 </div>
-
-<a class="btn btn-default" ng-show="before" ng-href="{{getPreviousLink(before)}}">Previous</a>
-<a class="btn btn-default" ns-show="after" ng-href="{{getNextLink(after)}}">Next</a>

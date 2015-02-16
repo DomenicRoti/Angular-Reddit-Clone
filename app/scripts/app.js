@@ -18,7 +18,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angularMoment'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -45,6 +46,10 @@ angular
       .when('/r/:subreddit/after/:after', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/r/:subreddit/comments/:postID', {
+        templateUrl: 'views/comments.html',
+        controller: 'CommentsCtrl'
       })
       .otherwise({
         redirectTo: '/'

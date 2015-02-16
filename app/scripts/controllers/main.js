@@ -24,7 +24,7 @@ angular.module('redditCloneApp')
 
     $scope.getPostLink = function(postData){
       if(postData.domain.substring(0,4) === 'self'){
-        return '#/post/' + postData.id;
+        return '#/r/' + postData.subreddit + '/comments/' + postData.id;
       } else {
         return postData.url;
       }
