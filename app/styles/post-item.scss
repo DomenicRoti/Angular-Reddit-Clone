@@ -3,6 +3,7 @@
 
 .post-item{
   padding-bottom:10px;
+  box-shadow: none;
   img{
     max-width: 100%;
   }
@@ -17,7 +18,8 @@
           @include triangle(
           $direction : top,
           $position  : top 0 left 0,
-          $color     : #3498db
+          $color     : #3498db,
+          $size      : .75em
         );
       }
     }
@@ -26,7 +28,8 @@
           @include triangle(
           $direction : bottom,
           $position  : top 0 left 0,
-          $color     : #3498db
+          $color     : #3498db,
+          $size      : .75em
         );
       }
     }
@@ -34,5 +37,13 @@
   .subreddit, .comment, .submitted{
     display: block;
     margin-top:5px;
+  }
+  .well{
+    background: transparent;
+    border: 0px;
+    padding: 10px 0px 0 10px;
+    margin-bottom: 10px;
+    box-shadow: none;
+    border-top: 1px solid #ececec;
   }
 }

@@ -18,5 +18,6 @@ angular.module('redditCloneApp')
       $scope.post = postData;
 
       $scope.comments = comments;
+      console.log(comments);
     });
   });

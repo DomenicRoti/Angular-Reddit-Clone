@@ -1,0 +1,14 @@
+<div class="row well">
+  <div ng-if="comment.kind != 'more'" class="col-xs-1 score">
+    <a ng-click="vote($event, '1', comment.data.name)" class="up" href="#">Upvote</a>
+    <a ng-click="vote($event, '-1', comment.data.name)" class="down" href="#">Downvote</a>
+  </div>
+  <div class="col-xs-11">
+    <a href="#">[-]</a>
+    <a href="#">{{comment.data.author}}</a> <span class="points">{{comment.data.score}} points</span>
+    <span class="time" am-time-ago="comment.data.created_utc * 1000"></span>
+    <p>{{comment.data.body}}</p>
+    <a ng-if="comment.kind == 'more'" href="#">Load More</a>
+    <div ng-repeat="comment in comment.data.replies.data.children" ng-include="'views/comment.html'"></div>
+  </div>
+</div>

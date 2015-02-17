@@ -18,9 +18,8 @@
       </span>
       <a href="#/r/{{post.data.subreddit}}/comments/{{post.data.id}}" class="comments">{{post.data.num_comments}} Comments</a>
     </div>
-
-    <div class="row" ng-repeat="comment in comments">
-      <pre>{{comment | json}}</pre>
-    </div>
   </div>
+
+  <div ng-repeat="comment in comments" ng-include="'views/comment.html'"></div>
+
 </div>
